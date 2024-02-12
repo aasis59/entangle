@@ -1,73 +1,91 @@
 {
-    "sections": {
-        "slideshow": {
-            "type": "slideshow",
-            "blocks": {
-                "slide1": {
-                    "type": "slide",
-                    "settings": {
-                        "content_position": "bottom_center",
-                        "color_scheme": "background-2",
-                        "image_opacity": 0.7,
-                        "container": false
-                    }
-                },
-                "slide2": {
-                    "type": "slide",
-                    "settings": {
-                        "content_position": "left",
-                        "alignment": "left",
-                        "color_scheme": "background-1"
-                    }
-                }
-            },
-            "block_order": [
-                "slide1",
-                "slide2"
-            ]
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide1": {
+          "type": "slide",
+          "settings": {
+            "image_opacity": 0.7,
+            "container": false,
+            "content_position": "bottom_center",
+            "color_scheme": "background-2"
+          }
         },
-        "featured_collection": {
-            "type": "featured-collection",
-            "blocks": {
-                "vendor": {
-                    "type": "vendor"
-                },
-                "title": {
-                    "type": "title"
-                },
-                "price": {
-                    "type": "price"
-                }
-            },
-            "block_order": [
-                "vendor",
-                "title",
-                "price"
-            ]
-        },
-        "hotspots": {
-            "type": "image-hotspots"
-        },
-        "newsletter": {
-            "type": "newsletter",
-            "blocks": {
-                "newsletter": {
-                    "type": "newsletter"
-                },
-                "subscribe": {
-                    "type": "newsletter_signup"
-                }
-            },
-            "block_order": [
-                "newsletter",
-                "subscribe"
-            ]
+        "slide2": {
+          "type": "slide",
+          "settings": {
+            "content_position": "left",
+            "alignment": "left",
+            "color_scheme": "background-1"
+          }
         }
+      },
+      "block_order": [
+        "slide1",
+        "slide2"
+      ],
+      "settings": {
+      }
     },
-    "order": [
-        "slideshow",
-        "featured_collection",
-        "hotspots",
-        "newsletter"
-    ]
+    "featured_collection": {
+      "type": "featured-collection",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price"
+      ],
+      "settings": {
+      }
+    },
+    "hotspots": {
+      "type": "image-hotspots",
+      "settings": {
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+          }
+        },
+        "subscribe": {
+          "type": "newsletter_signup",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "newsletter",
+        "subscribe"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "featured_collection",
+    "hotspots",
+    "newsletter"
+  ]
 }
