@@ -1363,6 +1363,10 @@ p,
   aspect-ratio: 1 / 1;
 }
 
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
 .\!h-px {
   height: 1px !important;
 }
