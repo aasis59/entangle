@@ -14,32 +14,89 @@
 {%- endstyle -%}
 {%- liquid
   assign video_id = section.settings.video.id | default: section.settings.video_url.id
-  assign poster = section.settings.video.preview_image | default: section.settings.image
+  assign poster =  section.settings.image
 -%}
 
 <div class="color-{{ section.settings.color_scheme }}">
   <div class="{% if section.settings.page_width %} page-width {% endif %} section-{{ section.id }}-padding text-{{ section.settings.vertical_alignment }}">
     <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+    <div class="flex justify-center items-center relative" id="play-video">
+      {%if poster != null -%}
+       {{ poster | image_url: width: image.width | image_tag: class: 'w-full h-full object-cover' }}
+       <button class="absolute inset-0 flex justify-center items-center">
+          {% render 'icon-play', class: 'h-20 w-20  ' %}
+        </button>
 
-    <div class="">
-      {%- if section.settings.video == null and section.settings.video_url != null -%}
-        <iframe class="w-full aspect-video rounded-lg shadow-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          {%- if poster != null -%}
-            <img
-              src="{{ poster | img_url: '1500x' }}"
-              alt="{{ alt }}"
-              class="w-full w-full h-full object-cover" />
-          {%- else -%}
-            {{ 'hero-apparel-3' | placeholder_svg_tag: 'w-full h-full object-cover' }}  
-          {%- endif -%}
-        </a>
+        
       {%- else -%}
-        {{ section.settings.video | video_tag: image_size: '1100x', loop: section.settings.enable_video_looping, controls: true, muted: false }}
+        {{ 'hero-apparel-3' | placeholder_svg_tag: 'w-full h-full object-cover ' }}  
+        <button class="absolute inset-0 flex justify-center items-center ">
+          {% render 'icon-play' class: 'h-20 w-20  ' %}
+        </button>
+      {%- endif -%}
+    </div>
+    <div class="flex justify-center items-center relative hidden " id="video-container">
+      {%- if section.settings.video != null -%}
+        
+        {{ section.settings.video | video_tag: image_size: '900x', loop: section.settings.enable_video_looping, controls: true, muted: false, class: 'w-full'  }}
+       
+        {%- elsif section.settings.video_url != null -%}
+        {%- liquid
+        assign loop = ''
+        if section.settings.enable_video_looping
+          assign loop = '&loop=1&playlist=' | append: video_id
+        endif
+      -%}
+        {%- if section.settings.video_url.type == 'youtube' -%}
+          <iframe
+           class="w-full aspect-video rounded-lg"
+            src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
+            
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="{{ section.settings.description | escape }}"
+          ></iframe>
+          
+        </button>
+        {%- else -%}
+          <iframe
+           class="w-full aspect-video rounded-lg"
+            src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+            
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="{{ section.settings.description | escape }}"
+          ></iframe>
+         
+        {%- endif -%}
+       
+      {%- elsif poster != null -%}
+
+       {{ poster | image_url: width: image.width | image_tag: class: 'w-full h-full object-cover' }}
+       <button class="absolute inset-0 flex justify-center items-center">
+          {% render 'icon-play', class: 'h-20 w-20  ' %}
+        </button>
+
+        
+      {%- else -%}
+        {{ 'hero-apparel-3' | placeholder_svg_tag: 'w-full h-full object-cover ' }}  
+        <button class="absolute inset-0 flex justify-center items-center ">
+          {% render 'icon-play' %}
+        </button>
       {%- endif -%}
     </div>
 
   </div>
 </div>
+<script>
+    
+    const playButton = document.getElementById('play-video');
+    const videoContainer = document.getElementById('video-container');
+    playButton.addEventListener('click', function() {
+        playButton.style.display = 'none'; 
+        videoContainer.style.display = 'block'; 
+    });
+</script>
 {% schema %}
   {
     "name": "Video",
@@ -97,15 +154,6 @@
         "id": "page_width",
         "label": "t:sections.all.page_width.label",
         "default": true
-      }, {
-        "type": "range",
-        "id": "image_width",
-        "label": "Video Width",
-        "min": 20,
-        "max": 80,
-        "default": 50,
-        "step": 5,
-        "unit": "%"
       }, {
         "type": "header",
         "content": "Shopify Video"
