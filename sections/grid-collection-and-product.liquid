@@ -15,9 +15,9 @@
   assign block_column_count = section.blocks.size
   assign grid_1 = 'grid-cols-1 grid-rows-1'
   assign grid_2 = 'grid-cols-2 grid-rows-1'
-  assign grid_3 = 'grid-cols-12 grid-rows-2 [&>*:nth-child(1)]:col-span-7 [&>*:nth-child(1)]:row-span-2 [&>*:nth-child(2)]:col-span-5 [&>*:nth-child(2)]:col-start-8 [&>*:nth-child(3)]:col-span-5 [&>*:nth-child(3)]:col-start-8 [&>*:nth-child(3)]:row-start-2'
+  assign grid_3 = 'grid-cols-12 grid-rows-2  [&>*:nth-child(1)]:col-span-7 [&>*:nth-child(1)]:row-span-2 [&>*:nth-child(2)]:col-span-5 [&>*:nth-child(2)]:col-start-8 [&>*:nth-child(3)]:col-span-5 [&>*:nth-child(3)]:col-start-8 [&>*:nth-child(3)]:row-start-2'
   assign grid_4 = 'grid-cols-12 grid-rows-2 [&>*:nth-child(1)]:col-span-6 [&>*:nth-child(1)]:row-span-2 [&>*:nth-child(2)]:col-span-6 [&>*:nth-child(2)]:col-start-7 [&>*:nth-child(3)]:col-span-3 [&>*:nth-child(3)]:col-start-7 [&>*:nth-child(3)]:row-start-2 [&>*:nth-child(4)]:col-span-3 [&>*:nth-child(4)]:col-start-10 [&>*:nth-child(4)]:row-start-2 '
-  assign grid_5 = 'grid-cols-12 grid-rows-2 [&>*:nth-child(1)]:col-span-6 [&>*:nth-child(1)]:row-span-2 [&>*:nth-child(2)]:col-span-3 [&>*:nth-child(2)]:col-start-7 [&>*:nth-child(3)]:col-span-3 [&>*:nth-child(3)]:col-start-10 [&>*:nth-child(4)]:col-span-3 [&>*:nth-child(4)]:col-start-7 [&>*:nth-child(4)]:row-start-2 [&>*:nth-child(5)]:col-span-3 [&>*:nth-child(5)]:col-start-10 [&>*:nth-child(5)]:row-start-2'
+  assign grid_5 = 'grid-cols-12 grid-rows-2 md:[&>*:nth-child(1)]:col-span-6  lg:[&>*:nth-child(1)]:col-span-6 lg:[&>*:nth-child(1)]:row-span-2 md:[&>*:nth-child(2)]:col-span-6 md:[&>*:nth-child(2)]:col-start-7 lg:[&>*:nth-child(2)]:col-span-3 lg:[&>*:nth-child(2)]:col-start-7 md:[&>*:nth-child(3)]:col-span-4 lg:[&>*:nth-child(3)]:col-span-3 lg:[&>*:nth-child(3)]:col-start-10 md:[&>*:nth-child(4)]:col-span-4 md:[&>*:nth-child(4)]:col-start-5 md:[&>*:nth-child(4)]:row-start-2  lg:[&>*:nth-child(4)]:col-span-3 lg:[&>*:nth-child(4)]:col-start-7 lg:[&>*:nth-child(4)]:row-start-2 md:[&>*:nth-child(5)]:col-span-4 md:[&>*:nth-child(5)]:col-start-9 md:[&>*:nth-child(5)]:row-start-2 lg:[&>*:nth-child(5)]:col-span-3 lg:[&>*:nth-child(5)]:col-start-10 lg:[&>*:nth-child(5)]:row-start-2'
   assign grid_6 = 'grid grid-cols-12 grid-rows-2 [&>*:nth-child(1)]:col-span-4 [&>*:nth-child(2)]:col-span-4 [&>*:nth-child(2)]:col-start-5 [&>*:nth-child(3)]:col-span-4 [&>*:nth-child(3)]:col-start-9 [&>*:nth-child(4)]:col-span-4 [&>*:nth-child(4)]:row-start-2 [&>*:nth-child(5)]:col-span-4 [&>*:nth-child(5)]:col-start-5 [&>*:nth-child(5)]:row-start-2 [&>*:nth-child(6)]:col-span-4 [&>*:nth-child(6)]:col-start-9 [&>*:nth-child(6)]:row-start-2'
 %}
 
@@ -66,13 +66,17 @@
                     {%- endcase -%}
                   "
                 >
-                  <h2 class="{{ block.settings.collection_heading_size }}">{{ block.settings.collection_heading }}</h2>
-                  <div class="{{- block.settings.collection_sub_heading_size }}">
+                  <h2 class="{{block.settings.collection_heading_size }}">
+                    {{ block.settings.collection_heading }}
+                  </h2>
+                  <div class="{{block.settings.collection_sub_heading_size }}">
                     {{ block.settings.collection_sub_heading }}
                   </div>
-                  <div class="mb-2">
+                  <div class="">
                     <a href="{{ block.settings.collection_button_url }}">
-                      <button class="button button-primary">{{ block.settings.collection_button }}</button>
+                      <button class="button button-primary ">
+                        {{ block.settings.collection_button }}
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -115,13 +119,15 @@
                     {%- endcase -%}
                   "
                 >
-                  <h2 class="{{ block.settings.image_heading_size }}">{{ block.settings.image_heading }}</h2>
+                  <h2 class="{{block.settings.image_heading_size }}">{{ block.settings.image_heading }}</h2>
                   <div class="{{ block.settings.image_sub_heading_size }}">
                     {{ block.settings.image_sub_heading }}
                   </div>
-                  <div class="mb-2">
+                  <div class="">
                     <a href="{{ block.settings.image_button_url }}">
-                      <button class="button button-primary">{{ block.settings.image_button }}</button>
+                      <button class="button button-primary  ">
+                        {{ block.settings.image_button }}
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -164,13 +170,17 @@
                     {%- endcase -%}
                   "
                 >
-                  <h2 class="{{ block.settings.product_heading_size }}">{{ block.settings.product_heading }}</h2>
+                  <h2 class="{{ block.settings.product_heading_size }}">
+                    {{ block.settings.product_heading }}
+                  </h2>
                   <div class="{{ block.settings.product_sub_heading_size }}">
                     {{ block.settings.product_sub_heading }}
                   </div>
-                  <div class="mb-2">
+                  <div class="">
                     <a href="{{ block.settings.product_button_url }}">
-                      <button class="button button-primary">{{ block.settings.product_button }}</button>
+                      <button class="button button-primary  ">
+                        {{ block.settings.product_button }}
+                      </button>
                     </a>
                   </div>
                 </div>
